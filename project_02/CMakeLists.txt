@@ -10,9 +10,9 @@ find_package(Eigen3 REQUIRED)
 find_package(Ceres REQUIRED)
 
 # 任务1：图像处理
-add_executable(task1 src/task1_image/main.cpp)
-target_include_directories(task1 PRIVATE ${OpenCV_INCLUDE_DIRS})
-target_link_libraries(task1 ${OpenCV_LIBS})
+add_executable(task1_image src/task1_image/main.cpp)
+target_include_directories(task1_image PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(task1_image ${OpenCV_LIBS})
 
 # 任务2：旋转视频参数拟合
 option(ENABLE_CUDA_ACCEL "Enable OpenCV CUDA acceleration" OFF)

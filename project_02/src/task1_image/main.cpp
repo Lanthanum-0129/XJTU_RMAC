@@ -50,16 +50,12 @@ int main(int argc, char** argv)
     cout << "Input image: " << input_path << "\n";
     cout << "Image size: " << img.cols << " x " << img.rows << "\n\n";
 
-    // =====================================================
     // 2. 灰度图
-    // =====================================================
     Mat gray;
     cvtColor(img, gray, COLOR_BGR2GRAY);
     saveImage(gray, output_dir, "gray.png");
 
-    // =====================================================
     // 3. HSV 三通道
-    // =====================================================
     Mat hsv;
     cvtColor(img, hsv, COLOR_BGR2HSV);
 
@@ -70,9 +66,7 @@ int main(int argc, char** argv)
     saveImage(hsv_channels[1], output_dir, "hsv_s.png");
     saveImage(hsv_channels[2], output_dir, "hsv_v.png");
 
-    // =====================================================
     // 4. 滤波对比
-    // =====================================================
     Size filter_kernel_size(5, 5);
     double gaussian_sigma = 1.5;
     int median_ksize = 5;
@@ -87,10 +81,7 @@ int main(int argc, char** argv)
     saveImage(gaussian_img, output_dir, "gaussian_filter.png");
     saveImage(median_img, output_dir, "median_filter.png");
 
-    // =====================================================
     // 5. HSV 红色提取
-    // =====================================================
-    // 为了降低噪声，可以先对图像做轻度高斯滤波再提取颜色。
     Mat img_for_mask;
     GaussianBlur(img, img_for_mask, Size(5, 5), 1.5);
 
@@ -111,9 +102,7 @@ int main(int argc, char** argv)
 
     saveImage(red_mask, output_dir, "red_mask.png");
 
-    // =====================================================
     // 6. 形态学操作
-    // =====================================================
     Mat kernel = getStructuringElement(MORPH_ELLIPSE, Size(5, 5));
 
     Mat eroded_img, dilated_img, opened_img, closed_img;
@@ -128,12 +117,7 @@ int main(int argc, char** argv)
     saveImage(opened_img, output_dir, "open.png");
     saveImage(closed_img, output_dir, "close.png");
 
-    // =====================================================
     // 7. 轮廓提取与面积筛选
-    // =====================================================
-    // 这里选择闭运算结果提取轮廓。
-    // 原因：闭运算可以填充红色区域内部小孔，并连接较窄断裂，
-    // 更容易得到较完整的红色连通区域。
     Mat contour_source = opened_img.clone();
 
     vector<vector<Point>> contours;
@@ -193,9 +177,7 @@ int main(int argc, char** argv)
 
     saveImage(contour_result, output_dir, "contours_boxes.png");
 
-    // =====================================================
     // 8. 绘制圆、矩形和文字
-    // =====================================================
     Mat drawing = img.clone();
 
     Point image_center(img.cols / 2, img.rows / 2);
@@ -237,9 +219,7 @@ int main(int argc, char** argv)
 
     saveImage(drawing, output_dir, "drawing.png");
 
-    // =====================================================
     // 9. 绕图像中心旋转 35 度
-    // =====================================================
     Point2f rotate_center(
         static_cast<float>(img.cols / 2.0),
         static_cast<float>(img.rows / 2.0)
@@ -262,9 +242,7 @@ int main(int argc, char** argv)
 
     saveImage(rotated_img, output_dir, "rotated_35deg.png");
 
-    // =====================================================
     // 10. 裁剪左上角 1/4
-    // =====================================================
     Rect crop_rect(
         0,
         0,
@@ -275,9 +253,7 @@ int main(int argc, char** argv)
     Mat cropped_img = img(crop_rect).clone();
     saveImage(cropped_img, output_dir, "crop_top_left.png");
 
-    // =====================================================
-    // 11. 打印参数，便于写入 README
-    // =====================================================
+    // 11. 打印参数
     cout << "\n================ Task1 Parameters ================\n";
     cout << "Mean filter kernel: 5 x 5\n";
     cout << "Gaussian filter kernel: 5 x 5, sigmaX = " << gaussian_sigma << "\n";
