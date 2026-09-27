@@ -15,8 +15,8 @@ cmake -S . -B build -DENABLE_CUDA_ACCEL=ON
 cmake --build build -j4
 ./build/task1_image
 ./build/task2_fit
-./build/task3_windmill --input resources/task_3.mp4 --accel gpu
-./build/task3_windmill --input resources/task_4.mp4 --accel gpu
+./build/task3_windmill --input resources/task_3.mp4
+./build/task3_windmill --input resources/task_4.mp4
 ```
 
 ## 参数与分析
