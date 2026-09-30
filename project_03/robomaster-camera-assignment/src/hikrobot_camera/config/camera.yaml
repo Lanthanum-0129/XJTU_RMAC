@@ -1,0 +1,15 @@
+hikrobot_camera_node:
+  ros__parameters:
+    camera_ip: ""
+    camera_sn: ""
+    image_topic: "/image_raw"
+    
+    # 【修改点】先使用最基础的 Bayer 格式，确保能取到流
+    pixel_format: "BayerRG8"  
+    # 【修改点】大幅降低帧率，防止 WSL USB 传输阻塞
+    frame_rate: 5.0       
+    
+    exposure_time: 10000.0
+    gain: 0.0
+    exposure_auto: false
+    gain_auto: false
