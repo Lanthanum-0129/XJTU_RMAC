@@ -12,7 +12,7 @@
 ## 2. 安装与配置
 
 ### 2.1 安装 MVS SDK
-1. 前往 [海康机器人官网](https://www.hikrobotics.com/cn/machinevision/service/download?module=0) 下载对应平台的 MVS SDK(下面以MVS-5.1.0为例)。
+1. 前往 [海康机器人官网](https://www.hikrobotics.com/cn/machinevision/service/download?module=0) 下载对应平台的 MVS SDK。
 2. 解压并运行安装脚本（通常需要 `sudo` 权限）：
    ```bash
    tar -xzf MVS-5.1.0_Linux_x86_64_20260909.zip
@@ -24,7 +24,7 @@
 ### 2.2 安装 ROS 依赖
 在工作空间根目录下执行：
 ```bash
-cd ~/RoboMaster/XJTU_RMAC # 替换为您的工作空间路径
+cd ~/RoboMaster/XJTU_RMAC # 替换为工作空间路径
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
@@ -136,5 +136,4 @@ robomaster-camera-assignment/
 ├── CMakeLists.txt           # 编译配置
 ├── package.xml              # 依赖声明
 └── README.md                # 本说明文档
-```
 ```
