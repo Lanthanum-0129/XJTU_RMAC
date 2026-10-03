@@ -1,5 +1,7 @@
 # 忽略build目录
 build/
+data/
+runs/
 
 # 忽略常见编译产物
 *.o
